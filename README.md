@@ -6,7 +6,7 @@ Infrastructuur voor het benchmarken van (meta)heuristieken voor het Vehicle Rout
 | Naam | GitHub | Rol / Algoritme |
 |------|--------|-----------------|
 | Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *TBD* |
-| Aucke Willems | [@auckew](https://github.com/auckew) | *TBD* |
+| Aucke Willems | [@auckew](https://github.com/auckew) | *Restricted dynamic programming (Gromicho)* |
 | Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *TBD* |
 | Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *TBD* |
 
