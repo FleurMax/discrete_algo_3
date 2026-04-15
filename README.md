@@ -8,7 +8,7 @@ Infrastructuur voor het benchmarken van (meta)heuristieken voor het Vehicle Rout
 | Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *TBD* |
 | Aucke Willems | [@auckew](https://github.com/auckew) | *Restricted dynamic programming (Gromicho)* |
 | Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *TBD* |
-| Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *TBD* |
+| Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *Improved Clarke and Wright savings algorithm* |
 
 ## 📁 Projectstructuur
 - `src/Customer.java`: Locatie/klant met coördinaten en vraag (demand).
