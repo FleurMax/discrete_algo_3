@@ -6,9 +6,9 @@ Infrastructuur voor het benchmarken van (meta)heuristieken voor het Vehicle Rout
 | Naam | GitHub | Rol / Algoritme |
 |------|--------|-----------------|
 | Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *TBD* |
-| Persoon 2 | | *TBD* |
-| Persoon 3 | | *TBD* |
-| Persoon 4 | | *TBD* |
+| Aucke Willems | [@auckew](https://github.com/auckew) | *TBD* |
+| Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *TBD* |
+| Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *TBD* |
 
 ## 📁 Projectstructuur
 - `src/Customer.java`: Locatie/klant met coördinaten en vraag (demand).

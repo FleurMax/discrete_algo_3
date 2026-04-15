@@ -15,20 +15,32 @@ We benchmark several algorithms on standardized DIMACS / CVRPLIB instances.
 | Naam | GitHub | Rol / Algoritme |
 |------|--------|-----------------|
 | Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *TBD* |
-| Persoon 2 | | *TBD* |
-| Persoon 3 | | *TBD* |
-| Persoon 4 | | *TBD* |
+| Aucke Willems | [@auckew](https://github.com/auckew) | *TBD* |
+| Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *TBD* |
+| Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *TBD* |
 
 ## 3. Algorithm Performances
 
 *In progress: To be updated as algorithms are implemented.*
 
-### 3.1 Algorithm 1 (e.g. Clarke and Wright Savings)
-Description of the algorithm and its parameters.
+### 3.1 Benchmark Results (Set A)
+Known optimal values for standard Augerat Set A instances.
 
 | Instance | Dimension | Capacity | Optimal Cost | Alg Results (Cost) | Time | Gap |
-| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **A-n32-k5.vrp** | 32 | 100 | - | - | - | - |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **A-n16-k5.vrp** | 16 | 35 | 190 | - | - | - |
+| **A-n32-k5.vrp** | 32 | 100 | 784 | - | - | - |
+| **A-n33-k5.vrp** | 33 | 100 | 661 | - | - | - |
+| **A-n33-k6.vrp** | 33 | 100 | 742 | - | - | - |
+| **A-n37-k5.vrp** | 37 | 100 | 669 | - | - | - |
+| **A-n39-k5.vrp** | 39 | 100 | 822 | - | - | - |
+| **A-n45-k7.vrp** | 45 | 100 | 1146 | - | - | - |
+| **A-n53-k7.vrp** | 53 | 100 | 1010 | - | - | - |
+| **A-n55-k9.vrp** | 55 | 100 | 1073 | - | - | - |
+| **A-n64-k9.vrp** | 64 | 100 | 1401 | - | - | - |
+| **A-n65-k9.vrp** | 65 | 100 | 1174 | - | - | - |
+| **A-n69-k9.vrp** | 69 | 100 | 1159 | - | - | - |
+| **A-n80-k10.vrp** | 80 | 100 | 1763 | - | - | - |
 
 *(Fill tables as results are aggregated)*
 
