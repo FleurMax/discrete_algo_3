@@ -8,158 +8,119 @@ The **Capacitated Vehicle Routing Problem (CVRP)** involves finding the most eff
 ## 2. High-Level Algorithm Overview
 The **Neural Large Neighborhood Search (NLNS)** is a metaheuristic that iteratively improves a solution by "destroying" a part of it (removing customers) and then "repairing" it (re-inserting customers). 
 
-The "Neural" aspect traditionally involves using deep learning models (like Pointer Networks) to decide how to repair the solution. In this implementation, we use a **surrogate heuristic**—Sequential Connection with Regret—which mimics the decision-making of a trained neural model.
+### Why "Neural"?
+The "Neural" aspect traditionally refers to using **Deep Reinforcement Learning** (specifically Pointer Networks with Attention) to learn the repair operator. Training a neural network allows it to "see" patterns in customer distributions that simple heuristics might miss.
+
+In this implementation, we use a **surrogate heuristic**—**Sequential Connection with Regret**. This is designed to mimic the behavior of a trained attention model:
+- **Attention Simulation**: Just as an attention mechanism focuses on the most "relevant" or "difficult" nodes in a graph, our surrogate uses **Regret** to identify which customers are the most critical to place *now* to avoid massive cost increases later.
 
 ---
 
 ## 3. Key Concepts
 
 ### Simulated Annealing (SA)
-Simulated Annealing is a probabilistic technique for approximating the global optimum of a given function. It is inspired by the process of annealing in metallurgy (cooling metal slowly to reach a low-energy crystalline state).
-- **Temperature ($T$)**: A parameter that controls the probability of accepting a "worse" solution. High temperature allows "jumps" to explore new areas; low temperature makes the search more "greedy."
-- **Cooling**: Gradually reducing the temperature to focus on local optimization as the search progresses.
-- **Escape Local Optima**: By occasionally accepting worse solutions, SA prevents the algorithm from getting "stuck" in a sub-optimal solution.
+Simulated Annealing is a probabilistic technique for approximating the global optimum. It is inspired by the process of annealing in metallurgy.
+- **The Acceptance Formula**: The probability of accepting a worse solution is calculated as $P = e^{-\Delta / T}$, where $\Delta$ is the change in cost and $T$ is the temperature.
+- **Temperature ($T$)**: High temperature allows the algorithm to accept significantly worse solutions, enabling it to "jump" out of local optima (valleys in the solution space).
+- **Cooling**: As $T$ decreases, the probability of accepting bad moves shrinks, effectively "freezing" the algorithm into the best local configuration it has found.
 
 ### Large Neighborhood Search (LNS)
-LNS is a framework where a large part of the solution is changed in each step. This allows the algorithm to explore a wider range of possible solutions compared to "Small Neighborhood" searches (like swapping two adjacent nodes).
+LNS is a powerful framework because of its **flexibility**. By destroying a large portion of the solution (10-25%), the algorithm can move to a completely different "neighborhood" of solutions that would be unreachable by simple point-swaps or local moves.
 
 ---
 
 ## 4. Detailed Code Walkthrough
 
 ### 4.1 The Orchestrator: `solve()`
-The `solve` method is the main engine of the algorithm. It initializes the solution and manages the iterations.
+The `solve` method manages the global search strategy, including batching and restarts.
 
 ```java
 public List<List<Customer>> solve(VRPProblem problem) {
-    // 1. Create an initial feasible solution
-    List<List<Customer>> pi = initialSolution(problem);
-    List<List<Customer>> piStar = deepCopy(pi); // Best found so far
-    
-    // 2. Set up Simulated Annealing parameters
-    double piStarCost = problem.calculateTotalCost(piStar);
-    double ts = piStarCost * 0.05; // Starting temperature
-    double tr = ts;               // Reset temperature for restarts
-    double tm = ts * 0.001;        // Minimum temperature (stopping point)
-    double delta = 0.98;           // Cooling rate
+    // ... Initialization ...
+    int batchSize = 16; 
+    int patience = 500; // Stagnation limit
+
+    while (totalTime < maxRuntime) {
+        // Create a batch of independent variants
+        for (int i = 0; i < batchSize; i++) {
+            B.add(deepCopy(pi));
+        }
+        
+        while (t > tm) {
+            // ... Destroy & Repair batch ...
+            // Select the best variant from the batch (pib)
+            if (accept(pibCost, piCost, t)) {
+                pi = pib;
+                if (pibCost < piStarCost) { 
+                    piStar = deepCopy(pi); 
+                    unstuckCounter = 0; // Reset patience
+                }
+            }
+            t *= delta; // Cool down
+        }
+        t = tr; // Restart SA from best found so far
+    }
+}
 ```
 
-**Explanation:**
-- The algorithm starts by generating a basic solution using `initialSolution`.
-- It sets the starting temperature based on a percentage of the initial cost. This ensures the temperature is proportional to the scale of the problem.
+**Deeper Insight:**
+- **Batching Strategy**: By processing a batch of 16 variants at each step, the algorithm explores 16 different "neighboring" solutions simultaneously. This increases the chances of finding a significantly better move in a single iteration.
+- **Restart & Stagnation**: If the algorithm doesn't find a new global best for a long time (`patience`), it "re-heats" the solution by resetting the temperature. This provides the energy needed to escape a persistent local optimum.
 
 ### 4.2 The Starting Point: `initialSolution()`
-We use a simple **Nearest Neighbor** heuristic to get started.
+We use a **Nearest Neighbor** heuristic to ensure we start with a valid (feasible) solution.
 
-```java
-private List<List<Customer>> initialSolution(VRPProblem problem) {
-    List<Customer> unvisited = new ArrayList<>(problem.getCustomers());
-    while (!unvisited.isEmpty()) {
-        List<Customer> route = new ArrayList<>();
-        Customer cur = problem.getDepot();
-        int cap = problem.getCapacity();
-        while (true) {
-            Customer nearest = findNearestWithinCapacity(cur, unvisited, cap);
-            if (nearest == null) break; // Route is full or no more customers
-            route.add(nearest);
-            unvisited.remove(nearest);
-            cap -= nearest.getDemand();
-            cur = nearest;
-        }
-        routes.add(route);
-    }
-}
-```
-
-**Explanation:**
-- This greedy approach builds routes one by one. It always picks the closest customer that doesn't exceed the vehicle's remaining capacity. This creates a "feasible" (legal) but likely non-optimal starting point.
+**Deeper Insight:**
+LNS is remarkably robust to the quality of the initial solution. Even if the Nearest Neighbor starting point is 50% above optimal, the destroy-repair cycles will rapidly prune and re-grow the routes into a more efficient structure.
 
 ### 4.3 Breaking the Solution: `destroy()`
-The goal of the destroy phase is to remove some customers so they can be re-inserted more optimally.
+Destroying the solution is about finding the right balance between **exploration** and **exploitation**.
 
 ```java
-private List<List<Customer>> destroy(List<List<Customer>> solution, List<Customer> removed, VRPProblem problem, int type) {
-    if (type == 0) { // Shaw Relatedness Removal
-        Customer seed = pickRandomCustomer(solution);
-        // Sort others by proximity and demand similarity to seed
-        flat.sort(Comparator.comparingDouble(c -> 
-            dist(c, seed) + Math.abs(c.getDemand() - seed.getDemand()) * 0.5));
-        // Remove the top N most "related" customers
-        removeCustomers(partial, removed, flat.subList(0, dLimit));
-    } else { // Tour-based Removal
-        // Pick a random spot and remove all routes close to it
-        partial.sort(Comparator.comparingDouble(r -> dist(r.center(), ref)));
-        removed.addAll(partial.remove(0)); // Delete whole routes
-    }
-}
+// Shaw Relatedness Logic
+flat.sort(Comparator.comparingDouble(c -> 
+    dist(c, seed) + Math.abs(c.getDemand() - seed.getDemand()) * 0.5));
 ```
 
-**Explanation:**
-- **Shaw Removal**: Target clusters of customers. By removing nodes that are similar, we give the repair operator a chance to re-order them more efficiently within the same area.
-- **Tour-based Removal**: Completely deletes a set of routes in a specific area. This forces the algorithm to "re-think" how that entire region should be served.
+**Deeper Insight:**
+- **Shaw Removal** is an "Exploitative" operator. By removing nodes that are similar (close together and similar demand), it creates a hole in the solution where the nodes are most likely to be interchangeable. This allows the repair operator to fine-tune local clusters.
+- **Tour-based Removal** is an "Explorative" operator. By deleting entire routes, it forces the algorithm to re-assign dozens of customers across the map, potentially leading to a completely different routing topology.
 
-### 4.4 Rebuilding: `repairSequential()`
-This is the "brain" of the NLNS implementation. It uses a **Regret-based Sequential Connection** strategy.
-
-```java
-private List<List<Customer>> repairSequential(List<List<Customer>> partial, List<Customer> removed, VRPProblem problem) {
-    // Treat everything as "segments" (partial routes or single nodes)
-    List<CustomerSegment> segments = createSegments(partial, removed);
-
-    while (!segments.isEmpty()) {
-        // Calculate "Regret" for each segment
-        // Regret = (Distance to 2nd best partner) - (Distance to best partner)
-        for (CustomerSegment s : segments) {
-            findBestAndSecondBest(s, segments, ...);
-            double regret = secondBestDist - bestDist;
-            if (regret > maxRegret) { 
-                target = s; // Pick segment with highest penalty for not being connected NOW
-            }
-        }
-        // Connect the target segment to its best partner
-        connect(target, bestPartner);
-    }
-}
-```
-
-**Explanation:**
-- **Segments**: The algorithm views the partial solution as a collection of "segments" (either single customers or chunks of existing routes).
-- **Regret Strategy**: Instead of picking the "cheapest" connection first (Greedy), it picks the connection that has the **highest regret**. This means "if I don't connect this segment to its best partner now, the next best option is much worse." This simulates the decision-making of a Neural Attention mechanism.
-- **Segment Flipping**: (Improved feature) The algorithm checks if connecting a segment in reverse is cheaper, allowing for more flexible route construction.
-
-### 4.5 Accepting the Move: `accept()`
-This implements the Simulated Annealing logic.
+### 4.4 Rebuilding: `repairSequential()` (The Neural Surrogate)
+This is where the "Regret" logic mimics a Pointer Network's Attention.
 
 ```java
-private boolean accept(double candidateCost, double currentCost, double temperature) {
-    if (candidateCost < currentCost) return true; // Always accept better solutions
+// Regret Calculation
+for (CustomerSegment s : segments) {
+    double best = findBestConnection(s);
+    double secondBest = findSecondBestConnection(s);
+    double regret = secondBest - best;
     
-    // Accept worse solutions with a probability based on temperature
-    double delta = candidateCost - currentCost;
-    return random.nextDouble() < Math.exp(-delta / temperature);
+    if (regret > maxRegret) { 
+        targetSegment = s; 
+    }
 }
 ```
 
-**Explanation:**
-- If the new solution is better, we always keep it.
-- If it's worse, we might still keep it. The probability is high if the cost increase is small and the temperature is high. As the temperature drops (cools), we become less and less likely to accept "bad" moves.
+**Deeper Insight:**
+- **Why Regret?**: A greedy inserter only looks at the `best` option. A **Regret-2** inserter looks at the **cost of NOT picking the best option**. If a segment has a high regret, it means its second-best placement is much worse than its best. Inserting it *now* is critical because waiting might "lock" its best spot, forcing it into a very expensive alternative later.
+- **Attention Mimicry**: In neural models, the attention weight is high for nodes that are "hard to place." Regret provides a deterministic mathematical surrogate for this "difficulty" or "priority."
+- **Segment Flipping**: Since CVRP routes are typically undirected, flipping a segment (reversing its nodes) can often reveal a shorter connection path that a directed sequential connection would miss.
 
 ---
 
 ## 5. Summary: How the Algorithm Works
 
-Here is a step-by-step walkthrough of one iteration of the NLNS algorithm:
+Here is a technical walkthrough of the NLNS execution:
 
-1.  **Initialize**: Start with a simple "Nearest Neighbor" solution.
-2.  **Batching**: Generate a "batch" of potential new solutions (e.g., 16 variants).
-3.  **Destroy**: For each variant in the batch, randomly choose a "Destroy" method (Shaw or Tour) and remove 10-15% of the customers.
-4.  **Repair**: Use the **Sequential Regret** logic to re-insert the removed customers. This logic ensures that the most "constrained" connections are handled first.
-5.  **Select Best**: Out of the 16 variants, find the one with the lowest cost.
-6.  **Evaluate (SA)**: Compare this best variant to our current solution:
-    *   If it's better, update the current solution.
-    *   If it's worse, roll a die (Simulated Annealing) to decide if we should jump to it anyway to avoid local optima.
-7.  **Cool Down**: Slightly reduce the temperature (`T = T * 0.98`).
-8.  **Repeat**: Keep doing this until the time limit is reached or the solution stops improving.
-9.  **Restart**: If we get "stuck" for too long (stagnation), reset the temperature to the original high value and continue from the best solution found so far.
+1.  **Phase 1: Construction**: A greedy Nearest Neighbor pass creates the first feasible set of routes.
+2.  **Phase 2: Perturbation (Destroy)**: The algorithm picks a region of the map (Tour-based) or a set of similar customers (Shaw-based) and "forgets" their current assignments.
+3.  **Phase 3: Prioritization (Regret)**: The algorithm looks at all the unassigned customers and segments. It identifies the "most desperate" segment—the one with the largest gap between its best and second-best placement.
+4.  **Phase 4: Connection (Repair)**: It connects that segment to its best neighbor, possibly flipping it for a better fit. This repeats until all customers are re-assigned.
+5.  **Phase 5: Selection**: The algorithm generates 16 such variations and picks the best one.
+6.  **Phase 6: Acceptance (Simulated Annealing)**:
+    *   **Better?** Always accept.
+    *   **Worse?** Accept with probability $e^{-\Delta / T}$ to maintain diversity.
+7.  **Phase 7: Convergence**: The temperature drops, making the search more focused. If no improvement is found, the system "re-heats" and restarts from the best known solution to try a different path.
 
-By repeating these steps thousands of times, the algorithm slowly "cooks" the random initial routes into a highly optimized set of delivery paths.
+Through this "Destructive-Constructive" cycle, the algorithm effectively "evolves" the solution, pruning away inefficient paths and re-wiring the network into a near-optimal configuration.
