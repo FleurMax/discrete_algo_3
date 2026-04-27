@@ -14,35 +14,39 @@ We benchmark several algorithms on standardized DIMACS / CVRPLIB instances.
 ## 2. Groep
 | Naam | GitHub | Rol / Algoritme |
 |------|--------|-----------------|
-| Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *TBD* |
-| Aucke Willems | [@auckew](https://github.com/auckew) | *TBD* |
-| Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *TBD* |
-| Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *TBD* |
+| Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *Neural Large Neighborhood Search (NLNS)* |
+| Aucke Willems | [@auckew](https://github.com/auckew) | *Restricted dynamic programming (Gromicho)* |
+| Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *Iterated Variable Neighborhood Descent (IVND)* |
+| Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *Improved Clarke and Wright savings algorithm* |
 
 ## 3. Algorithm Performances
 
 *In progress: To be updated as algorithms are implemented.*
 
 ### 3.1 Benchmark Results (Set A)
-Known optimal values for standard Augerat Set A instances.
+Known optimal values for standard Augerat Set A instances compared against Neural LNS (Sequential).
 
-| Instance | Dimension | Capacity | Optimal Cost | Alg Results (Cost) | Time | Gap |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **A-n16-k5.vrp** | 16 | 35 | 190 | - | - | - |
-| **A-n32-k5.vrp** | 32 | 100 | 784 | - | - | - |
-| **A-n33-k5.vrp** | 33 | 100 | 661 | - | - | - |
-| **A-n33-k6.vrp** | 33 | 100 | 742 | - | - | - |
-| **A-n37-k5.vrp** | 37 | 100 | 669 | - | - | - |
-| **A-n39-k5.vrp** | 39 | 100 | 822 | - | - | - |
-| **A-n45-k7.vrp** | 45 | 100 | 1146 | - | - | - |
-| **A-n53-k7.vrp** | 53 | 100 | 1010 | - | - | - |
-| **A-n55-k9.vrp** | 55 | 100 | 1073 | - | - | - |
-| **A-n64-k9.vrp** | 64 | 100 | 1401 | - | - | - |
-| **A-n65-k9.vrp** | 65 | 100 | 1174 | - | - | - |
-| **A-n69-k9.vrp** | 69 | 100 | 1159 | - | - | - |
-| **A-n80-k10.vrp** | 80 | 100 | 1763 | - | - | - |
+| Instance | Optimal Cost | Neural LNS (Cost) | Time (ms) | Gap (%) |
+| :--- | :---: | :---: | :---: | :---: |
+| Instance | Optimal Cost | Neural LNS (Cost) | Time (ms) | Gap (%) |
+| :--- | :---: | :---: | :---: | :---: |
+| **A-n16-k5.vrp** | 190* | 524.78 | 48.21 | 176.2% |
+| **A-n32-k5.vrp** | 784 | 812.29 | 164.13 | 3.6% |
+| **A-n33-k6.vrp** | 742 | 761.84 | 201.14 | 2.7% |
+| **A-n37-k5.vrp** | 669 | 699.05 | 269.74 | 4.5% |
+| **A-n39-k5.vrp** | 822 | 847.68 | 225.90 | 3.1% |
+| **A-n45-k7.vrp** | 1146 | 1185.08 | 229.23 | 3.4% |
+| **A-n53-k7.vrp** | 1010 | 1103.20 | 437.75 | 9.2% |
+| **A-n55-k9.vrp** | 1073 | 1128.64 | 392.88 | 5.2% |
+| **A-n64-k9.vrp** | 1401 | 1492.84 | 690.60 | 6.6% |
+| **A-n65-k9.vrp** | 1174 | 1287.97 | 508.20 | 9.7% |
+| **A-n69-k9.vrp** | 1159 | 1216.54 | 758.24 | 5.0% |
+| **A-n80-k10.vrp** | 1763 | 1934.74 | 751.44 | 9.7% |
+| **A-n100-k10.vrp** | 2041 | 2436.32 | 1512.83 | 19.4% |
+| **A-n130-k10.vrp** | 1491 | 3054.66 | 2924.72 | 104.9% |
 
-*(Fill tables as results are aggregated)*
+> [!NOTE]
+> *Some local instances (like A-n16) contain metadata or coordinate variants that differ from official CVRPLIB standards, leading to abnormal gaps. Results for large instances (n > 100) are heavily influenced by the heuristic surrogate's local search depth.
 
 ### 3.2 Algorithm 2 (e.g. Ant Colony System)
 Description of the ant colony metaheuristic approach...
@@ -50,7 +54,7 @@ Description of the ant colony metaheuristic approach...
 ### 3.3 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
 Description of local search and mutation operators...
 
-### 3.4 Algorithm 4 (e.g. Restricted Dynamic Programming or Neural LNS)
+### 3.4 Neural Large Neighborhood Search (Maxim)
 Description of the framework...
 
 ## 4. Conclusion
