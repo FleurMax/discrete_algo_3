@@ -46,9 +46,14 @@ Known optimal values for standard Augerat Set A instances compared against Neura
 > [!NOTE]
 > *Some local instances (like A-n16) contain metadata or coordinate variants that differ from official CVRPLIB standards, leading to abnormal gaps. Results for large instances (n > 100) are heavily influenced by the heuristic surrogate's local search depth.
 
-### 3.2 Clarke Wright Algorithm
-The Clarke Wright framework 
-#### 3.2.1 Standard Clarke Wright Algoritm
+### 3.2 Clarke Wright Savings Algorithm
+The Clarke and Wright (CW) Savings Algorithm is one of the most famous heuristics used to solve the Vehicle Routing Problem (VRP). In this section of the report we will analyse this algorithm, but also 3 improvements that were prsented in the literature. These 3 improved algorithms are the Modified Clarke Wright Savings Algoritm (MCW), Improved Clarke Wright Savings Algoritm (ICW) and the Modified Improved Clarke Wright Savings Algoritm (MICW).
+#### 3.2.1 Standard Clarke Wright Savings Algoritm
+The Clarke and Wright Savings Algorithm operates through a sequential logic that optimises for cost by merging individual trips. The process begins by assuming that every customer is served by a dedicated vehicle making a separate round trip from the depot. To improve this initial setup, the algorithm calculates the potential "savings" for every possible pair of customers by determining how much distance is eliminated if one vehicle visits both in a single trip instead of two separate trips.
+
+Once these values are calculated, all customer pairs are sorted into a ranked list from the highest savings to the lowest. The algorithm then iterates through this list, merging routes whenever it encounters a pair that can be connected without exceeding the vehicle's capacity or violating other constraints. This cycle repeats until no further merges can be made, resulting in an optimized set of routes where the most significant distance reductions were prioritized first.
+
+The results of the Clarke Wright Savings Algorithm are presented in the following table.
 
 | Instance | Optimal Cost | CW (Cost) | Time (ms) | Gap (%) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -67,7 +72,27 @@ The Clarke Wright framework
 | **A-n100-k10.vrp** | 2041 | 2288.44 | 17.79 | 12.1% |
 | **A-n130-k10.vrp** | 1491 | 2923.98 | 16.18 | 96.1% |
 
-#### 3.2.2 Modified Clarke Wright Algoritm
+We can see that if we omit the two extreme cases (as was mentioned in the note of 3.1) the CW algorithm preforms quite well. The gap stays between 2.5% and 12.1%. On top of the competitive performance, the CW algorithm is very fast, often only a couple of miliseconds. To further illustrate its's performance we may compare it to the LNS in the following table.
+
+| Instance | Optimal Cost | CW (Cost) | LNS (Cost) | Diff Cost | Diff Time (ms) | CW gap (%) | LNS gap (%) |
+| :--- | :---: | :---: | :---: | :---: |:---: | :---: | :---: |
+| **A-n16-k5.vrp** | 190\* | 504.70 | 524.78 | \-20.08 | +47.61 | 165.6% | 176.2% |
+| **A-n32-k5.vrp** | 784 | 843.69 | 812.29 | +31.40 | +162.90 | 7.6% | 3.6% |
+| **A-n33-k6.vrp** | 742 | 776.26 | 761.84 | +14.42 | +200.33 | 4.6% | 2.7% |
+| **A-n37-k5.vrp** | 669 | 707.81 | 699.05 | +8.76 | +268.80 | 5.8% | 4.5% |
+| **A-n39-k5.vrp** | 822 | 901.99 | 847.68 | +54.31 | +224.88 | 9.7% | 3.1% |
+| **A-n45-k7.vrp** | 1146 | 1199.98 | 1185.08 | +14.90 | +227.72 | 4.7% | 3.4% |
+| **A-n53-k7.vrp** | 1010 | 1099.45 | 1103.20 | \-3.75 | +436.20 | 8.9% | 9.2% |
+| **A-n55-k9.vrp** | 1073 | 1099.84 | 1128.64 | \-28.80 | +391.22 | 2.5% | 5.2% |
+| **A-n64-k9.vrp** | 1401 | 1486.92 | 1492.84 | \-5.92 | +688.43 | 6.1% | 6.6% |
+| **A-n65-k9.vrp** | 1174 | 1239.42 | 1287.97 | \-48.55 | +506.28 | 5.6% | 9.7% |
+| **A-n69-k9.vrp** | 1159 | 1210.78 | 1216.54 | \-5.76 | +756.06 | 4.5% | 5.0% |
+| **A-n80-k10.vrp** | 1763 | 1860.94 | 1934.74 | \-73.80 | +748.75 | 5.6% | 9.7% |
+| **A-n100-k10.vrp** | 2041 | 2288.44 | 2436.32 | \-147.88 | +1495.04 | 12.1% | 19.4% |
+| **A-n130-k10.vrp** | 1491 | 2923.98 | 3054.66 | \-130.68 | +2908.54 | 96.1% | 104.9% |
+| **Average** | — | — | — | **\-24.10** | **+647.34** | **24.25%** | **26.18%** |
+
+#### 3.2.2 Modified Clarke Wright Savings Algoritm
 
 | Instance | Optimal Cost | MCW (Cost) | Time (ms) | Gap (%) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -105,7 +130,7 @@ The Clarke Wright framework
 | **A-n130-k10.vrp** | 1491 | 2923.98 | 96.1% | 2888.83 | 93.8% | \-35.15 |
 | **Average** | — | — | **24.25%** | — | **23.82%** | **\-6.79** |
 
-#### 3.2.3 Improved Clarke Wright Algoritm
+#### 3.2.3 Improved Clarke Wright Savings Algoritm
 depth = 100.000
 k= 25
 
@@ -146,7 +171,7 @@ k= 25
 | **A-n130-k10.vrp** | 1491 | 2923.98 | 96.1% | 2914.34 | 95.5% | \-9.64 |
 | **Average** | — | — | **24.25%** | — | **23.84%** | **\-8.83** |
 
-#### 3.2.4 Modified Improved Clarke Wright Algoritm
+#### 3.2.4 Modified Improved Clarke Wright Savings Algoritm
 depth = 100.000
 k= 25
 | Instance | Optimal Cost | Ave. MICW (Cost) | Min. MICW (Cost) | Max. MICW (Cost) | St. Dev MICW (Cost) | Ave. Time (ms) | Gap (%) |
