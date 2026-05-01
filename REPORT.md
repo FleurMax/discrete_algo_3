@@ -48,7 +48,7 @@ Known optimal values for standard Augerat Set A instances compared against Neura
 > [!NOTE]
 > *Some local instances (like A-n16) contain metadata or coordinate variants that differ from official CVRPLIB standards, leading to abnormal gaps. Results for large instances (n > 100) are heavily influenced by the heuristic surrogate's local search depth.
 
-### 3.2 Algorithm 2 (e.g. Ant Colony System)
+### 3.2 Clarke Wright Algorithm
 Description of the ant colony metaheuristic approach...
 
 ### 3.3 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
