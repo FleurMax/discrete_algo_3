@@ -47,7 +47,9 @@ Known optimal values for standard Augerat Set A instances compared against Neura
 > *Some local instances (like A-n16) contain metadata or coordinate variants that differ from official CVRPLIB standards, leading to abnormal gaps. Results for large instances (n > 100) are heavily influenced by the heuristic surrogate's local search depth.
 
 ### 3.2 Clarke Wright Savings Algorithm
+
 The Clarke and Wright (CW) Savings Algorithm is one of the most famous heuristics used to solve the Vehicle Routing Problem (VRP). In this section of the report we will analyse this algorithm, but also 3 improvements that were prsented in the literature. These 3 improved algorithms are the Modified Clarke Wright Savings Algoritm (MCW), Improved Clarke Wright Savings Algoritm (ICW) and the Modified Improved Clarke Wright Savings Algoritm (MICW).
+
 #### 3.2.1 Standard Clarke Wright Savings Algoritm
 The Clarke and Wright Savings Algorithm operates through a sequential logic that optimises for cost by merging individual trips. The process begins by assuming that every customer is served by a dedicated vehicle making a separate round trip from the depot. To improve this initial setup, the algorithm calculates the potential "savings" for every possible pair of customers by determining how much distance is eliminated if one vehicle visits both in a single trip instead of two separate trips.
 
@@ -76,23 +78,28 @@ We can see that if we omit the two extreme cases (as was mentioned in the note o
 
 | Instance | Optimal Cost | CW (Cost) | LNS (Cost) | Diff Cost | Diff Time (ms) | CW gap (%) | LNS gap (%) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: | :---: |
-| **A-n16-k5.vrp** | 190\* | 504.70 | 524.78 | \-20.08 | +47.61 | 165.6% | 176.2% |
-| **A-n32-k5.vrp** | 784 | 843.69 | 812.29 | +31.40 | +162.90 | 7.6% | 3.6% |
-| **A-n33-k6.vrp** | 742 | 776.26 | 761.84 | +14.42 | +200.33 | 4.6% | 2.7% |
-| **A-n37-k5.vrp** | 669 | 707.81 | 699.05 | +8.76 | +268.80 | 5.8% | 4.5% |
-| **A-n39-k5.vrp** | 822 | 901.99 | 847.68 | +54.31 | +224.88 | 9.7% | 3.1% |
-| **A-n45-k7.vrp** | 1146 | 1199.98 | 1185.08 | +14.90 | +227.72 | 4.7% | 3.4% |
-| **A-n53-k7.vrp** | 1010 | 1099.45 | 1103.20 | \-3.75 | +436.20 | 8.9% | 9.2% |
-| **A-n55-k9.vrp** | 1073 | 1099.84 | 1128.64 | \-28.80 | +391.22 | 2.5% | 5.2% |
-| **A-n64-k9.vrp** | 1401 | 1486.92 | 1492.84 | \-5.92 | +688.43 | 6.1% | 6.6% |
-| **A-n65-k9.vrp** | 1174 | 1239.42 | 1287.97 | \-48.55 | +506.28 | 5.6% | 9.7% |
-| **A-n69-k9.vrp** | 1159 | 1210.78 | 1216.54 | \-5.76 | +756.06 | 4.5% | 5.0% |
-| **A-n80-k10.vrp** | 1763 | 1860.94 | 1934.74 | \-73.80 | +748.75 | 5.6% | 9.7% |
-| **A-n100-k10.vrp** | 2041 | 2288.44 | 2436.32 | \-147.88 | +1495.04 | 12.1% | 19.4% |
-| **A-n130-k10.vrp** | 1491 | 2923.98 | 3054.66 | \-130.68 | +2908.54 | 96.1% | 104.9% |
-| **Average** | — | — | — | **\-24.10** | **+647.34** | **24.25%** | **26.18%** |
+| **A-n16-k5.vrp** | 190\* | 504.70 | 524.78 | \-20.08 | \-47.61 | 165.6% | 176.2% |
+| **A-n32-k5.vrp** | 784 | 843.69 | 812.29 | +31.40 | \-162.90 | 7.6% | 3.6% |
+| **A-n33-k6.vrp** | 742 | 776.26 | 761.84 | +14.42 | \-200.33 | 4.6% | 2.7% |
+| **A-n37-k5.vrp** | 669 | 707.81 | 699.05 | +8.76 | \-268.80 | 5.8% | 4.5% |
+| **A-n39-k5.vrp** | 822 | 901.99 | 847.68 | +54.31 | \-224.88 | 9.7% | 3.1% |
+| **A-n45-k7.vrp** | 1146 | 1199.98 | 1185.08 | +14.90 | \-227.72 | 4.7% | 3.4% |
+| **A-n53-k7.vrp** | 1010 | 1099.45 | 1103.20 | \-3.75 | \-436.20 | 8.9% | 9.2% |
+| **A-n55-k9.vrp** | 1073 | 1099.84 | 1128.64 | \-28.80 | \-391.22 | 2.5% | 5.2% |
+| **A-n64-k9.vrp** | 1401 | 1486.92 | 1492.84 | \-5.92 | \-688.43 | 6.1% | 6.6% |
+| **A-n65-k9.vrp** | 1174 | 1239.42 | 1287.97 | \-48.55 | \-506.28 | 5.6% | 9.7% |
+| **A-n69-k9.vrp** | 1159 | 1210.78 | 1216.54 | \-5.76 | \-756.06 | 4.5% | 5.0% |
+| **A-n80-k10.vrp** | 1763 | 1860.94 | 1934.74 | \-73.80 | \-748.75 | 5.6% | 9.7% |
+| **A-n100-k10.vrp** | 2041 | 2288.44 | 2436.32 | \-147.88 | \-1495.04 | 12.1% | 19.4% |
+| **A-n130-k10.vrp** | 1491 | 2923.98 | 3054.66 | \-130.68 | \-2908.54 | 96.1% | 104.9% |
+| **Average** | — | — | — | **\-24.10** | **\-647.34** | **24.25%** | **26.18%** |
+
+This comparison shows that CW algorithm dominates the LNS algorithm on speed every and outperforms it on cost on average.
 
 #### 3.2.2 Modified Clarke Wright Savings Algoritm
+The first alternative CW algorithm is the Modified Clarke Wright Savings Algoritm (MCW). The modification happens only in the calculation of the potential savings. It add parameters $\lambda$, $\mu$ and $\nu$, where $\lambda$,  the route shape parameter, is a parameter that controls the relative significance of direct arc between two customers, $\mu$, the weighted parameter, is the asymmetry between two customers with respect to their distances to the depot and $\nu$, the customer demand parameter, includes the demand of customers on a vehicle’s capacity. Based on literature informed bounds, we chose $\lambda = 1.5$, $\mu = 0.5$ and $\nu = 1$. 
+
+The results of the Modified Clarke Wright Savings Algoritm are presented in the following table.
 
 | Instance | Optimal Cost | MCW (Cost) | Time (ms) | Gap (%) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -111,6 +118,7 @@ We can see that if we omit the two extreme cases (as was mentioned in the note o
 | **A-n100-k10.vrp** | 2041 | 2280.72 | 19.99 | 11.7% |
 | **A-n130-k10.vrp** | 1491 | 2888.83 | 14.75 | 93.8% |
 
+We can see that if we omit the two extreme cases (as was mentioned in the note of 3.1) the MCW algorithm again preforms quite well. The gap stays between 0.7% and 11.1%, which is an improvement on the CW algorithm. Thz MCW algorithm is still very fast, often staying at only a couple of miliseconds, but the more complex savings computation does demand setuptime than CW did. To further compare the CW and the MCW algoritm we may may refer to the following table.
 
 | Instance | Optimal Cost | CW (Cost) | CW gap (%) | MCW (Cost) | MCW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: | 
@@ -130,9 +138,12 @@ We can see that if we omit the two extreme cases (as was mentioned in the note o
 | **A-n130-k10.vrp** | 1491 | 2923.98 | 96.1% | 2888.83 | 93.8% | \-35.15 |
 | **Average** | — | — | **24.25%** | — | **23.82%** | **\-6.79** |
 
+Here we are affirmed in belief that the MCW genrally outperforms the CW algoritm.
+
 #### 3.2.3 Improved Clarke Wright Savings Algoritm
-depth = 100.000
-k= 25
+Instead of modifying the savings calculation, a different approach would be to change how we pick what pair is set as a mergign candidate for a given ordered list of savings. Holland proposed one way to do this, called fitness proportionate selection or roulettewheel selection. In this method we don't just take te highest available savings value, but we select the $T$ top elements of our ordered list and randomly select one value to be the following candidate. The selection chance is proportionate to its savings value, so that on average higher savings values are chosen more often. This step is repeated multiple times and every time this 'tournament' obtains a lower cost, we change the savingslist from which the tournament gets created to this 'more optimal' tournament. The tournament size $T$ is also randomly genreated. This method too has parameters on which it depends, namely the depth, consecutive depth, which stops the algorithm early if there are no improvements for an amount of iterations. and tournament size $T$. Though exprimentation we took the depth to be 100,000, the consecutive depth to be 20000 and the tournament size to be 3. As this method is randomised we ran the algorithm 25 times per testset.
+
+The results of the Improved Clarke Wright Savings Algoritm are presented in the following table.
 
 | Instance | Optimal Cost | Ave. ICW (Cost) | Min. ICW (Cost) | Max. ICW (Cost) | St. Dev ICW (Cost) | Ave. Time (ms) | Gap (%) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: | 
@@ -151,7 +162,7 @@ k= 25
 | **A-n100-k10.vrp** | 2041 | 2281.82 | 2260.32 | 2315.17 | 12.92 | 277.40 | 11.8% |
 | **A-n130-k10.vrp** | 1491 | 2914.60 | 2881.55 | 2938.47 | 13.50 | 386.72 | 95.5% |
 
-
+The first thing to note is that, similarly to the previous two algorithms, the cost is competitive and falls between 2.9% and 11.8%. There is a noticable difference in computation time, but this is a result of our choice of high depth. If computation time if more relevant for your usecase, we advise you to lower it. A further comparision with the CW algorithm is presented in the following table.
 
 | Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: |
@@ -171,9 +182,12 @@ k= 25
 | **A-n130-k10.vrp** | 1491 | 2923.98 | 96.1% | 2914.34 | 95.5% | \-9.64 |
 | **Average** | — | — | **24.25%** | — | **23.84%** | **\-8.83** |
 
+As we can see the ICW outperforms the CW algorithm on average. It also outperforms the MCW algorithm on average, but the difference is small and the higher computation time may not justify the slight cost decrease.
+
 #### 3.2.4 Modified Improved Clarke Wright Savings Algoritm
-depth = 100.000
-k= 25
+Finally we can combine the changes proposed in the Modified and the Improved algoritms to obtain the Modified Improved Clarke Wright Savings Algoritm(MICW). The same parameters where used as in the previous algorithms. There where further no other parameters necessary.
+
+The results of the Modified Improved Clarke Wright Savings Algoritm are presented in the following table.
 | Instance | Optimal Cost | Ave. MICW (Cost) | Min. MICW (Cost) | Max. MICW (Cost) | St. Dev MICW (Cost) | Ave. Time (ms) | Gap (%) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: | 
 | **A-n16-k5.vrp** | 190\* | 516.78 | 502.86 | 550.81 | 15.12 | 32.47 | 172.0% |
@@ -191,7 +205,7 @@ k= 25
 | **A-n100-k10.vrp** | 2041 | 2279.02 | 2234.55 | 2328.54 | 23.47 | 291.61 | 11.7% |
 | **A-n130-k10.vrp** | 1491 | 2889.87 | 2880.78 | 2907.70 | 6.46 | 374.02 | 93.8% |
 
-
+Again this algorith performs similarly to the previous thee algorithms, the cost again competitive and now falls between 1.5% and 11.4%. There is a noticable difference in computation time, but this is a result of our choice of high depth. If computation time if more relevant for your usecase, we advise you to lower it. A further comparision with the CW algorithm is presented in the following table.
 
 | Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: |
@@ -211,7 +225,7 @@ k= 25
 | **A-n130-k10.vrp** | 1491 | 2923.98 | 96.1% | 2889.87 | 93.8% | \-34.11 |
 | **Average** | — | — | **24.25%** | — | **23.95%** | **\-7.54** |
 
-remarkably when combining the two methods of imporovement and modification, we see a subtractive effect. This may be as a result of the parameter choice, but may also be because the randomisation is better with pure savingsvalues.
+Remarkably we observe that when we combibned the two methods of imporovement and modification to one method, there is a subtractive effect. The improvements of the MICW is on average not as good as the improvements of either MCW or ICW. This may be a result of the parameter choice, but it may also indicate that the roulettewheel selection procedure is adapted for the 'pure' notion of a savings value.
 
 ### 3.3 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
 Description of local search and mutation operators...
