@@ -5,9 +5,9 @@ Infrastructuur voor het benchmarken van (meta)heuristieken voor het Vehicle Rout
 ## 👥 Groep
 | Naam | GitHub | Rol / Algoritme |
 |------|--------|-----------------|
-| Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *TBD* |
+| Maxim Milet | [@FleurMax](https://github.com/FleurMax) | *Neural Large Neighborhood Search (NLNS)* |
 | Aucke Willems | [@auckew](https://github.com/auckew) | *Restricted dynamic programming (Gromicho)* |
-| Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *TBD* |
+| Leto Caris | [@LetoCaris](https://github.com/LetoCaris) | *Iterated Variable Neighborhood Descent (IVND)* |
 | Senne Lievens | [@SenneLievens](https://github.com/SenneLievens) | *Improved Clarke and Wright savings algorithm* |
 
 ## 📁 Projectstructuur
@@ -72,4 +72,41 @@ javac -d out src/*.java
 # Run
 java -cp out Main
 ```
-De resultaten worden gegeneert in de `results/` map.
+## 📈 Resultaten & Benchmarks
+
+### 3.1 Officiële Optimale Kosten (Set A)
+Deze waarden zijn de referentiepunten voor de Augerat Set A benchmarks, verkregen via [CVRPLIB](http://vrp.galgos.inf.puc-rio.br/).
+
+| Instantie | Optimaal | Instantie | Optimaal |
+| :--- | :---: | :--- | :---: |
+| A-n16-k5 | 190 | A-n55-k9 | 1073 |
+| A-n32-k5 | 784 | A-n64-k9 | 1401 |
+| A-n33-k6 | 742 | A-n65-k9 | 1174 |
+| A-n37-k5 | 669 | A-n69-k9 | 1159 |
+| A-n39-k5 | 822 | A-n80-k10 | 1763 |
+| A-n45-k7 | 1146 | A-n100-k10 | 2041 |
+| A-n53-k7 | 1010 | A-n130-k10 | 1491 |
+
+---
+
+### 3.4 Neural Large Neighborhood Search (Maxim)
+Dit algoritme implementeert de NLNS metaheuristiek (Hottung & Tierney, 2020) met Point/Tour destroy en een Regret-based Sequential Repair surrogate.
+
+| Instance | Optimal | NLNS Cost | Gap (%) |
+| :--- | :---: | :---: | :---: |
+| **A-n16-k5** | 190 | 510.09 | 168.5% |
+| **A-n32-k5** | 784 | 800.60 | 2.1% |
+| **A-n33-k6** | 742 | 778.72 | 4.9% |
+| **A-n37-k5** | 669 | 771.76 | 15.4% |
+| **A-n39-k5** | 822 | 912.52 | 11.0% |
+| **A-n45-k7** | 1146 | 1320.53 | 15.2% |
+| **A-n53-k7** | 1010 | 1169.68 | 15.8% |
+| **A-n55-k9** | 1073 | 1255.69 | 17.0% |
+| **A-n64-k9** | 1401 | 1774.23 | 26.6% |
+| **A-n65-k9** | 1174 | 1359.80 | 15.8% |
+| **A-n69-k9** | 1159 | 1290.43 | 11.3% |
+| **A-n80-k10** | 1763 | 2137.82 | 21.3% |
+| **A-n100-k10** | 2041 | 2618.36 | 28.3% |
+| **A-n130-k10** | 1491 | 3523.64 | 136.3% |
+
+*Resultaten gegenereerd via de geoptimaliseerde Java surrogate (Regret-2 Sequential Connection).*
