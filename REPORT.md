@@ -87,7 +87,7 @@ The Clarke Wright framework
 | **A-n130-k10.vrp** | 1491 | 2888.83 | 14.75 | 93.8% |
 
 
-| Instance | Optimal Cost | CW (Cost) | CW gap (%) | MCW (Cost) | MCW gap (%) | Difference (%) |
+| Instance | Optimal Cost | CW (Cost) | CW gap (%) | MCW (Cost) | MCW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: | 
 | **A-n16-k5.vrp** | 190\* | 504.70 | 165.6% | 508.15 | 167.4% | +3.45 |
 | **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 835.01 | 6.5% | \-8.68 |
@@ -128,7 +128,7 @@ k= 25
 
 
 
-| Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (%) |
+| Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: |
 | **A-n16-k5.vrp** | 190\* | 504.70 | 165.6% | 515.88 | 171.5% | +11.18 |
 | **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 820.15 | 4.6% | \-23.54 |
@@ -168,7 +168,7 @@ k= 25
 
 
 
-| Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (%) |
+| Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: |
 | **A-n16-k5.vrp** | 190\* | 504.70 | 165.6% | 516.78 | 172.0% | +12.08 |
 | **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 838.95 | 7.0% | \-4.74 |
