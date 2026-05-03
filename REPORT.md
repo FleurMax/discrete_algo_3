@@ -231,7 +231,7 @@ Remarkably we observe that when we combibned the two methods of imporovement and
 Description of local search and mutation operators...
 
 ### 3.4 Neural Large Neighborhood Search (Maxim)
-Description of the framework...
+Neural Large Neighborhood Search (Neural LNS) is a metaheuristic that enhances the traditional LNS framework by employing deep learning models, such as Pointer Networks with attention mechanisms, to learn optimal destroy and repair operators from problem data. This data-driven approach enables the algorithm to discover sophisticated patterns and dependencies within solution spaces, often outperforming manually designed heuristics on complex combinatorial problems like the VRP.
 
 ## 4. Conclusion
 *Conclusion detailing the trade-offs between solution quality (Gap to optimal) and computational resources (time & memory) required by the different heuristics.*
