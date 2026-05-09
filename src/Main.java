@@ -10,10 +10,11 @@ public class Main {
         // Add your implemented algorithms here
         // algorithms.add(new DummyVRPAlgorithm());
         // algorithms.add(new ClarkeWrightAlgorithm());
-        // algorithms.add(new RestrictedDPAlgorithm());
+        algorithms.add(new RestrictedDPAlgorithm());
+        //algorithms.add(new RestrictedDynamicAlgorithm());
         // algorithms.add(new AntColonyAlgorithm());
         // algorithms.add(new IteratedVNDAlgorithm());
-        algorithms.add(new NeuralLNSAlgorithm());
+        //algorithms.add(new NeuralLNSAlgorithm());
 
         BenchmarkRunner runner = new BenchmarkRunner();
 

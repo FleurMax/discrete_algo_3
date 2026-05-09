@@ -54,7 +54,8 @@ public class BenchmarkRunner {
                     
                     ExecutorService executor = Executors.newSingleThreadExecutor();
                     Future<List<List<Customer>>> future = executor.submit(() -> algo.solve(problem));
-                    
+
+
                     long startTime = System.nanoTime();
                     List<List<Customer>> solution = null;
                     boolean timeout = false;
