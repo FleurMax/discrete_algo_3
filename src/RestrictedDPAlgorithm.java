@@ -48,7 +48,7 @@ public class RestrictedDPAlgorithm implements VRPAlgorithm{
             }
         }
 
-        return reconstructRoutes(best, problem, customerById);
+        return reconstructRoutes(best, customerById);
     }
 //STAP 1:
     private List<Customer> buildGTR(VRPProblem problem) {
@@ -178,7 +178,7 @@ public class RestrictedDPAlgorithm implements VRPAlgorithm{
         return new ArrayList<>(states.subList(0, subGrootte));
     }
 
-    private List<List<Customer>> reconstructRoutes(DPState beste, VRPProblem problem, Map<Integer, Customer> customerById){
+    private List<List<Customer>> reconstructRoutes(DPState beste, Map<Integer, Customer> customerById){
         List<List<Customer>> routes = new ArrayList<>();
         if(beste == null) return routes;
 
