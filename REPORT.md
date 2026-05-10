@@ -259,9 +259,9 @@ We can generally note that on this testset gap between optimal cost and the obta
 
 ### 3.3 Restricted Dynamic Programming Algorithm 
 The Restricted DP algorithm is a construction heuristic based on the exact dynamic programming algorithm of the Traveling Salesman Problem (TSP). The method applies this framework to the VRP through the giant-tour representation (GTR): all vehicles are concatenated into a single large cycle, reducing the VRP to a sequencing problem. This allows single-route and multi-route problems to be handled in a uniform way. 
-The exact DP algorithm for the VRP has a time complexity of \(O(n\cdot 2^{n-m} \cdot m)\) - impractical for realistic problem sizes. Therefore, two restrictions are imposed to reduce the state spacen on the solution-space and in the search-space. 
-An already known restrictin is allowing at most H solutions, with lowest capacity, to be expanded further in each stage of the state space. 
-In addition, they introduce the \(E\)-restriction. This ensures for each state \((S, j)\) to only be expanded towards the \(E\) nearest unvisited nodes, for which we find feasible expansions. This means, for the CVRP, a feasibility check is incorporated at each expansion.
+The exact DP algorithm for the VRP has a time complexity of $O(n\cdot 2^{n-m} \cdot m)$ - impractical for realistic problem sizes. Therefore, two restrictions are imposed to reduce the state space.. 
+An already known restriction is allowing at most H solutions, with lowest capacity, to be expanded further in each stage of the state space. 
+In addition, they introduce the $E$-restriction. This ensures for each state $(S, j)$ to only be expanded towards the $E$ nearest unvisited nodes, for which we find feasible expansions. This means, for the CVRP, a feasibility check is incorporated at each expansion.
 
 #### 3.3.1 Parameters H and E
 
