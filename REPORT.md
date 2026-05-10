@@ -265,9 +265,13 @@ An already known restriction is allowing at most H solutions, with lowest capaci
 In addition, they introduce the $E$-restriction. This ensures for each state $(S, j)$ to only be expanded towards the $E$ nearest unvisited nodes, for which we find feasible expansions. This means, for the CVRP, a feasibility check is incorporated at each expansion.
 
 #### 3.3.2 Parameters H and E
+The behaviour of RDP is primarily governed by two parameters: $H$ and $E$.
+Parameter H conrtols the width of the beam through the state space. A low value of $H$ means the algorithm commits early to a small set of proimising partial solutions, trading solution quality for speed. Increasing $H$ allows more alternative partial tours to survive into later stages. At the extreme $H=1$, the algorithm results in the nearest neighbour heuristic, while $H = \infty$ recovers the exact DP algorithm. 
+
+Parameter $E$ controls how many neughbours each state is allowed to ewapnd to. This reflects the observation that in high-quality VRP solutions the arcs tend to connnect to nearby nodes. A smaller $E$ speeds up each stage. 
 
 #### 3.3.3 Results on Set A
-The implementation was tested on the Augerat Set A benchmark instances. The known optimal values are taken from CVRPLIB. The parameters were taken to be $E = 10$ and $H= 200$.  
+The implementation was tested on the Augerat Set A benchmark instances. The known optimal values are taken from CVRPLIB. The algortihm was run with $E = 10$ and $H= 200$. These values represent a moderate trade-off between solution quality and computation time.  
 
 | Instance | Optimal Cost | RDP (Cost) | Time (ms) | Gap (%) |
 | --- | --- | --- | --- | --- |
