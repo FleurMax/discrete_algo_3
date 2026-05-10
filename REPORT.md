@@ -1,4 +1,4 @@
-# Dit is niet het finaal verslag, Leto moet nog iets uploaden en Maxim gaat nog een tabel bij zijn stuk zetten. Dit is zuiver om de volledige GitHub te uploaden.
+# Dit is niet het finaal verslag. Dit is zuiver om de volledige GitHub te uploaden.
 
 # Vehicle Routing Problem: Benchmark Report
 ## 1. Introduction
