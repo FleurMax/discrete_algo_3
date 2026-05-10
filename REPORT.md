@@ -264,9 +264,9 @@ The exact DP algorithm for the VRP has a time complexity of $O(n\cdot 2^{n-m} \c
 An already known restriction is allowing at most H solutions, with lowest capacity, to be expanded further in each stage of the state space. 
 In addition, they introduce the $E$-restriction. This ensures for each state $(S, j)$ to only be expanded towards the $E$ nearest unvisited nodes, for which we find feasible expansions. This means, for the CVRP, a feasibility check is incorporated at each expansion.
 
-#### 3.3.2 Parameters H and E
+#### 3.3.2 Parameters $H$ and $E$
 The behaviour of RDP is primarily governed by two parameters: $H$ and $E$.
-Parameter H conrtols the width of the beam through the state space. A low value of $H$ means the algorithm commits early to a small set of proimising partial solutions, trading solution quality for speed. Increasing $H$ allows more alternative partial tours to survive into later stages. At the extreme $H=1$, the algorithm results in the nearest neighbour heuristic, while $H = \infty$ recovers the exact DP algorithm. 
+Parameter H controls the width of the beam through the state space. A low value of $H$ means the algorithm commits early to a small set of promising partial solutions, trading solution quality for speed. Increasing $H$ allows more alternative partial tours to survive into later stages. At the extreme $H=1$, the algorithm results in the nearest neighbour heuristic, while $H = \infty$ recovers the exact DP algorithm. 
 
 Parameter $E$ controls how many neughbours each state is allowed to ewapnd to. This reflects the observation that in high-quality VRP solutions the arcs tend to connnect to nearby nodes. A smaller $E$ speeds up each stage. 
 
@@ -293,7 +293,9 @@ The implementation was tested on the Augerat Set A benchmark instances. The know
 Ignoring the noted outliers, the algorithm scores below the Clarke-Wright vairants and Neural LNS, with gaps typically ranging between 10% and 50%. This is consistent with the findings of Gromicho et al. (2011), who report that RDP as a pure construction heuristic is less competitive on classical VRP variants, but performs significantly better when more realistic constraints are added. 
 
 The computation times are reasonable: from more or less 12 ms for small instance (n=16) up to 643 ms for th largest instance (n=130). This is slower than Clarke-Wright, but competitive with Neural LNS. 
- 
+
+Investigating for different parameters, we will take a look at the results for $H = 1000$ and $E= 5$. Now, we hold back on committing early and leave more promising candidates in the solution space. This would ideally improve quality of the solutions. 
+
 ### 3.4 Neural Large Neighborhood Search (Maxim)
 Neural Large Neighborhood Search (Neural LNS) is a metaheuristic that enhances the traditional LNS framework by employing deep learning models, such as Pointer Networks with attention mechanisms, to learn optimal destroy and repair operators from problem data. This data-driven approach enables the algorithm to discover sophisticated patterns and dependencies within solution spaces, often outperforming manually designed heuristics on complex combinatorial problems like the VRP.
 
