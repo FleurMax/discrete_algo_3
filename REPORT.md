@@ -1,5 +1,6 @@
-# Vehicle Routing Problem: Benchmark Report
+# Dit is niet het finaal verslag, Leto moet nog iets uploaden en Maxim gaat nog een tabel bij zijn stuk zetten. Dit is zuiver om de volledige GitHub te uploaden.
 
+# Vehicle Routing Problem: Benchmark Report
 ## 1. Introduction
 This project benchmarks algorithms for solving variants of the Vehicle Routing Problem (VRP). The VRP is a well-known NP-hard combinatorial optimization problem aiming to design optimal delivery routes from a central depot to a set of widely dispersed customers, subject to various constraints such as vehicle capacities (CVRP) or time windows (VRPTW). This project explores approximate algorithms and metaheuristics due to the difficulty of solving large instances exactly. 
 
