@@ -292,9 +292,7 @@ The implementation was tested on the Augerat Set A benchmark instances. The know
 
 Ignoring the noted outliers, the algorithm scores below the Clarke-Wright vairants and Neural LNS, with gaps typically ranging between 10% and 50%. This is consistent with the findings of Gromicho et al. (2011), who report that RDP as a pure construction heuristic is less competitive on classical VRP variants, but performs significantly better when more realistic constraints are added. 
 
-The computation times are reasonable: from more or less 12 ms for small instance (n=16) up to 643 ms for th largest instance (n=130). This is slower than Clarke-Wright, but competitive with Neural LNS. 
-
-Investigating for different parameters, we will take a look at the results for $H = 1000$ and $E= 5$. Now, we hold back on committing early and leave more promising candidates in the solution space. This would ideally improve quality of the solutions. 
+The computation times are reasonable: from more or less 12 ms for small instance (n=16) up to 643 ms for th largest instance (n=130). This is slower than Clarke-Wright, but competitive with Neural LNS.  
 
 ### 3.4 Neural Large Neighborhood Search (Maxim)
 Neural Large Neighborhood Search (Neural LNS) is a metaheuristic that enhances the traditional LNS framework by employing deep learning models, such as Pointer Networks with attention mechanisms, to learn optimal destroy and repair operators from problem data. This data-driven approach enables the algorithm to discover sophisticated patterns and dependencies within solution spaces, often outperforming manually designed heuristics on complex combinatorial problems like the VRP.
