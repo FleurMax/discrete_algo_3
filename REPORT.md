@@ -207,7 +207,7 @@ The results of the Modified Improved Clarke Wright Savings Algoritm are presente
 
 Again this algorith performs similarly to the previous thee algorithms, the cost again competitive and now falls between 1.5% and 11.4%. There is a noticable difference in computation time, but this is a result of our choice of high depth. If computation time if more relevant for your usecase, we advise you to lower it. A further comparision with the CW algorithm is presented in the following table.
 
-| Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (Cost) |
+| Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. MICW (Cost) | Ave. MICW gap (%) | Difference (Cost) |
 | :--- | :---: | :---: | :---: | :---: |:---: | :---: |
 | **A-n16-k5.vrp** | 190\* | 504.70 | 165.6% | 516.78 | 172.0% | +12.08 |
 | **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 838.95 | 7.0% | \-4.74 |
@@ -226,6 +226,36 @@ Again this algorith performs similarly to the previous thee algorithms, the cost
 | **Average** | — | — | **24.25%** | — | **23.95%** | **\-7.54** |
 
 Remarkably we observe that when we combibned the two methods of imporovement and modification to one method, there is a subtractive effect. The improvements of the MICW is on average not as good as the improvements of either MCW or ICW. This may be a result of the parameter choice, but it may also indicate that the roulettewheel selection procedure is adapted for the 'pure' notion of a savings value.
+
+#### 3.2.5  Benchmark set B
+It is important to note that these methods perform differently on different benchmark sets. As such we will summerise the performances on a different bechmark set in one table. Note that we keep the hyperparameters unchanged.
+
+|Instance | Optimal Cost | CW (Cost) | CW gap (%) | MCW (Cost) | MCW gap (%)| Ave. ICW (Cost) | Ave. ICW gap (%) | Ave MICW (Cost) | Ave. MICW gap (%) |
+| :--- | :---: | :---: | :---: | :---: |:---: | :---: | :---: |:---: | :---: |
+| **B-n31-k5** | 672 | 681,16 | 1,36% | 681,25 | 1,38% | 684,66 | 1,88% | 684,93 | 1,92% |
+| **B-n34-k5** | 788 | 794,33 | 0,80% | 840,87 | 6,71% | 798,98 | 1,39% | 856,12 | 8,64% |
+| **B-n35-k5** | 955 | 978,33 | 2,44% | 979,37 | 2,55% | 981,43 | 2,77% | 986,10 | 3,26% |
+| **B-n38-k6** | 805 | 832,09 | 3,37% | 830,62 | 3,18% | 836,20 | 3,88% | 833,82 | 3,58% |
+| **B-n39-k5** | 549 | 566,71 | 3,23% | 570,24 | 3,87% | 572,40 | 4,26% | 575,21 | 4,77% |
+| **B-n41-k6** | 829 | 898,09 | 8,33% | 887,25 | 7,03% | 897,38 | 8,25% | 892,79 | 7,70% |
+| **B-n43-k6** | 742 | 781,96 | 5,39% | 767,92 | 3,50% | 767,56 | 3,44% | 772,27 | 4,08% |
+| **B-n44-k7** | 909 | 937,74 | 3,16% | 932,70 | 2,61% | 941,13 | 3,53% | 941,64 | 3,59% |
+| **B-n45-k5** | 751 | 757,16 | 0,82% | 756,04 | 0,67% | 765,41 | 1,92% | 761,36 | 1,38% |
+| **B-n45-k6** | 678 | 727,84 | 7,35% | 723,20 | 6,67% | 732,30 | 8,01% | 731,28 | 7,86% |
+| **B-n50-k7** | 741 | 748,80 | 1,05% | 755,48 | 1,95% | 752,83 | 1,60% | 758,43 | 2,35% |
+| **B-n50-k8** | 1312 | 1354,03 | 3,20% | 1392,18 | 6,11% | 1359,95 | 3,65% | 1369,66 | 4,40% |
+| **B-n51-k7** | 1032 | 1121,25 | 8,65% | 1135,75 | 10,05% | 1094,78 | 6,08% | 1102,53 | 6,83% |
+| **B-n52-k7** | 747 | 764,90 | 2,40% | 812,39 | 8,75% | 766,56 | 2,62% | 784,68 | 5,04% |
+| **B-n56-k7** | 707 | 733,74 | 3,78% | 731,41 | 3,45% | 735,71 | 4,06% | 738,63 | 4,47% |
+| **B-n57-k7** | 1153 | 1239,78 | 7,53% | 1242,79 | 7,79% | 1243,27 | 7,83% | 1244,41 | 7,93% |
+| **B-n57-k9** | 1598 | 1653,42 | 3,47% | 1659,90 | 3,87% | 1658,29 | 3,77% | 1661,24 | 3,96% |
+| **B-n64-k9** | 861 | 921,56 | 7,03% | 924,02 | 7,32% | 923,97 | 7,31% | 927,28 | 7,70% |
+| **B-n66-k9** | 1316 | 1416,42 | 7,63% | 1433,43 | 8,92% | 1412,96 | 7,37% | 1393,24 | 5,87% |
+| **B-n68-k9** | 1272 | 1317,77 | 3,60% | 1320,12 | 3,78% | 1318,62 | 3,66% | 1323,20 | 4,03% |
+| **B-n78-k10** | 1221 | 1264,56 | 3,57% | 1270,10 | 4,02% | 1270,77 | 4,08% | 1275,54 | 4,47% |
+| **Ave. gap** | — | — | **4,19%** | — | **4,87%** | — | **4,26%** | — | **4,64%** |
+
+We can generally note that on this testset gap between optimal cost and the obtained cost is smaller. We also observe that the classical CW performs the best, noteably better than the MCW. We assume that this may be a result of the chosen hyperparemters. Next the ICW performs slightly worse on averge, but stays competitive. As such repeated of the ICW method and keeping track of the minimum, may attain better results than the CW attains. Finally the MICW now does improve on the MCW method, which may futher motivate the hypothesis that the poorer performance of the modified versions may be a result of the chosen hyperparemters.
 
 ### 3.3 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
 Description of local search and mutation operators...
