@@ -257,11 +257,43 @@ It is important to note that these methods perform differently on different benc
 
 We can generally note that on this testset gap between optimal cost and the obtained cost is smaller. We also observe that the classical CW performs the best, noteably better than the MCW. We assume that this may be a result of the chosen hyperparemters. Next the ICW performs slightly worse on averge, but stays competitive. As such repeated of the ICW method and keeping track of the minimum, may attain better results than the CW attains. Finally the MICW now does improve on the MCW method, which may futher motivate the hypothesis that the poorer performance of the modified versions may be a result of the chosen hyperparemters.
 
-### 3.3 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
-Description of local search and mutation operators...
+### 3.3 Restricted Dynamic Programming Algorithm 
+The Restricted DP algorithm is a construction heuristic based on the exact dynamic programming algorithm of the Traveling Salesman Problem (TSP). The method applies this framework to the VRP through the giant-tour representation (GTR): all vehicles are concatenated into a single large cycle, reducing the VRP to a sequencing problem. This allows single-route and multi-route problems to be handled in a uniform way. 
+The exact DP algorithm for the VRP has a time complexity of \(O(n\cdot 2^{n-m} \cdot m)\) - impractical for realistic problem sizes. Therefore, two restrictions are imposed to reduce the state spacen on the solution-space and in the search-space. 
+An already known restrictin is allowing at most H solutions, with lowest capacity, to be expanded further in each stage of the state space. 
+In addition, they introduce the \(E\)-restriction. This ensures for each state \((S, j)\) to only be expanded towards the \(E\) nearest unvisited nodes, for which we find feasible expansions. This means, for the CVRP, a feasibility check is incorporated at each expansion.
 
+#### 3.3.1 Parameters H and E
+
+#### Results on Set A
+The implementation was tested on the Augerat Set A benchmark instances. The knonw optimal valules are taken from CVRPLIB. The parameters were taken to be \(E = 10\) and \(H= 200\).  
+
+| Instance | Optimal Cost | RDP (Cost) | Time (ms) | Gap (%) |
+| --- | --- | --- | --- | --- |
+| **A-n16-k5.vrp** | 190* | 687.53 | 11.78 | 261.9% |
+| **A-n32-k5.vrp** | 784 | 941.54 | 45.48 | 20.1% |
+| **A-n33-k6.vrp** | 742 | 1082.14 | 43.20 | 45.8% |
+| **A-n37-k5.vrp** | 669 | 979.32 | 58.24 | 46.4% |
+| **A-n39-k5.vrp** | 822 | 1014.69 | 61.47 | 23.4% |
+| **A-n45-k7.vrp** | 1146 | 1260.42 | 64.84 | 10.0% |
+| **A-n53-k7.vrp** | 1010 | 1251.67 | 93.52 | 23.9% |
+| **A-n55-k9.vrp** | 1073 | 1350.49 | 106.08 | 25.8% |
+| **A-n64-k9.vrp** | 1401 | 1937.97 | 120.34 | 38.3% |
+| **A-n65-k9.vrp** | 1174 | 1421.46 | 135.22 | 21.1% |
+| **A-n69-k9.vrp** | 1159 | 1507.81 | 158.16 | 30.1% |
+| **A-n80-k10.vrp** | 1763 | 2486.34 | 180.59 | 41.0% |
+| **A-n100-k10.vrp** | 2041 | 2979.17 | 582.86 | 46.0% |
+| **A-n130-k10.vrp** | 1491 | 3724.55 | 642.13 | 149.8% |
+
+Ignoring the noted outliers, the algorithm scores below the Clarke-Wright vairants and Neural LNS, with gaps typically ranging between 10% and 50%. This is consistent with the findings of Gromicho et al. (2011), who report that RDP as a pure construction heuristic is less competitive on classical VRP variants, but performs significantly better when more realistic constraints are added. 
+
+The computation times are reasonable: from more or less 12 ms for small instance (n= 16) up to 643 ms for th largest instance (n= 130). This is slower than Clarke-Wright, but competitive with NEural LNS. 
+ 
 ### 3.4 Neural Large Neighborhood Search (Maxim)
 Neural Large Neighborhood Search (Neural LNS) is a metaheuristic that enhances the traditional LNS framework by employing deep learning models, such as Pointer Networks with attention mechanisms, to learn optimal destroy and repair operators from problem data. This data-driven approach enables the algorithm to discover sophisticated patterns and dependencies within solution spaces, often outperforming manually designed heuristics on complex combinatorial problems like the VRP.
+
+### 3.5 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
+Description of local search and mutation operators...
 
 ## 4. Conclusion
 *Conclusion detailing the trade-offs between solution quality (Gap to optimal) and computational resources (time & memory) required by the different heuristics.*
