@@ -258,15 +258,16 @@ It is important to note that these methods perform differently on different benc
 We can generally note that on this testset gap between optimal cost and the obtained cost is smaller. We also observe that the classical CW performs the best, noteably better than the MCW. We assume that this may be a result of the chosen hyperparemters. Next the ICW performs slightly worse on averge, but stays competitive. As such repeated of the ICW method and keeping track of the minimum, may attain better results than the CW attains. Finally the MICW now does improve on the MCW method, which may futher motivate the hypothesis that the poorer performance of the modified versions may be a result of the chosen hyperparemters.
 
 ### 3.3 Restricted Dynamic Programming Algorithm 
+#### 3.3.1 The algorithm
 The Restricted DP algorithm is a construction heuristic based on the exact dynamic programming algorithm of the Traveling Salesman Problem (TSP). The method applies this framework to the VRP through the giant-tour representation (GTR): all vehicles are concatenated into a single large cycle, reducing the VRP to a sequencing problem. This allows single-route and multi-route problems to be handled in a uniform way. 
 The exact DP algorithm for the VRP has a time complexity of $O(n\cdot 2^{n-m} \cdot m)$ - impractical for realistic problem sizes. Therefore, two restrictions are imposed to reduce the state space.. 
 An already known restriction is allowing at most H solutions, with lowest capacity, to be expanded further in each stage of the state space. 
 In addition, they introduce the $E$-restriction. This ensures for each state $(S, j)$ to only be expanded towards the $E$ nearest unvisited nodes, for which we find feasible expansions. This means, for the CVRP, a feasibility check is incorporated at each expansion.
 
-#### 3.3.1 Parameters H and E
+#### 3.3.2 Parameters H and E
 
-#### Results on Set A
-The implementation was tested on the Augerat Set A benchmark instances. The knonw optimal valules are taken from CVRPLIB. The parameters were taken to be \(E = 10\) and \(H= 200\).  
+#### 3.3.3 Results on Set A
+The implementation was tested on the Augerat Set A benchmark instances. The known optimal values are taken from CVRPLIB. The parameters were taken to be $E = 10$ and $H= 200$.  
 
 | Instance | Optimal Cost | RDP (Cost) | Time (ms) | Gap (%) |
 | --- | --- | --- | --- | --- |
@@ -287,7 +288,7 @@ The implementation was tested on the Augerat Set A benchmark instances. The knon
 
 Ignoring the noted outliers, the algorithm scores below the Clarke-Wright vairants and Neural LNS, with gaps typically ranging between 10% and 50%. This is consistent with the findings of Gromicho et al. (2011), who report that RDP as a pure construction heuristic is less competitive on classical VRP variants, but performs significantly better when more realistic constraints are added. 
 
-The computation times are reasonable: from more or less 12 ms for small instance (n= 16) up to 643 ms for th largest instance (n= 130). This is slower than Clarke-Wright, but competitive with NEural LNS. 
+The computation times are reasonable: from more or less 12 ms for small instance (n=16) up to 643 ms for th largest instance (n=130). This is slower than Clarke-Wright, but competitive with Neural LNS. 
  
 ### 3.4 Neural Large Neighborhood Search (Maxim)
 Neural Large Neighborhood Search (Neural LNS) is a metaheuristic that enhances the traditional LNS framework by employing deep learning models, such as Pointer Networks with attention mechanisms, to learn optimal destroy and repair operators from problem data. This data-driven approach enables the algorithm to discover sophisticated patterns and dependencies within solution spaces, often outperforming manually designed heuristics on complex combinatorial problems like the VRP.
