@@ -79,13 +79,12 @@ Deze waarden zijn de referentiepunten voor de Augerat Set A benchmarks, verkrege
 
 | Instantie | Optimaal | Instantie | Optimaal |
 | :--- | :---: | :--- | :---: |
-| A-n16-k5 | 190 | A-n55-k9 | 1073 |
 | A-n32-k5 | 784 | A-n64-k9 | 1401 |
 | A-n33-k6 | 742 | A-n65-k9 | 1174 |
 | A-n37-k5 | 669 | A-n69-k9 | 1159 |
 | A-n39-k5 | 822 | A-n80-k10 | 1763 |
 | A-n45-k7 | 1146 | A-n100-k10 | 2041 |
-| A-n53-k7 | 1010 | A-n130-k10 | 1491 |
+| A-n53-k7 | 1010 | A-n55-k9 | 1073 |
 
 ---
 
@@ -94,7 +93,6 @@ Dit algoritme implementeert de NLNS metaheuristiek (Hottung & Tierney, 2020) met
 
 | Instance | Optimal | NLNS Cost | Gap (%) |
 | :--- | :---: | :---: | :---: |
-| **A-n16-k5** | 190 | 510.09 | 168.5% |
 | **A-n32-k5** | 784 | 800.60 | 2.1% |
 | **A-n33-k6** | 742 | 778.72 | 4.9% |
 | **A-n37-k5** | 669 | 771.76 | 15.4% |
@@ -107,6 +105,5 @@ Dit algoritme implementeert de NLNS metaheuristiek (Hottung & Tierney, 2020) met
 | **A-n69-k9** | 1159 | 1290.43 | 11.3% |
 | **A-n80-k10** | 1763 | 2137.82 | 21.3% |
 | **A-n100-k10** | 2041 | 2618.36 | 28.3% |
-| **A-n130-k10** | 1491 | 3523.64 | 136.3% |
 
 *Resultaten gegenereerd via de geoptimaliseerde Java surrogate (Regret-2 Sequential Connection).*

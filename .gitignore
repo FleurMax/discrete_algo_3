@@ -2,3 +2,5 @@ out/
 results/
 *.class
 .DS_Store
+.agent
+docs/
