@@ -150,20 +150,20 @@ The results of the Improved Clarke Wright Savings Algoritm are presented in the 
 The first thing to note is that, similarly to the previous two algorithms, the cost is competitive and falls between 2.9% and 11.8%. There is a noticable difference in computation time, but this is a result of our choice of high depth. If computation time if more relevant for your usecase, we advise you to lower it. A further comparision with the CW algorithm is presented in the following table.
 
 | Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Difference (Cost) |
-| :--- | :---: | :---: | :---: | :---: |:---: | :---: |
-| **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 820.15 | 4.6% | \-23.54 |
-| **A-n33-k6.vrp** | 742 | 776.26 | 4.6% | 750.59 | 1.2% | \-25.67 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 820.15 | 4.6% | -23.54 |
+| **A-n33-k6.vrp** | 742 | 776.26 | 4.6% | 750.59 | 1.2% | -25.67 |
 | **A-n37-k5.vrp** | 669 | 707.81 | 5.8% | 723.67 | 8.2% | +15.86 |
-| **A-n39-k5.vrp** | 822 | 901.99 | 9.7% | 875.32 | 6.5% | \-26.67 |
-| **A-n45-k7.vrp** | 1146 | 1199.98 | 4.7% | 1199.09 | 4.6% | \-0.89 |
-| **A-n53-k7.vrp** | 1010 | 1099.45 | 8.9% | 1086.10 | 7.5% | \-13.35 |
-| **A-n55-k9.vrp** | 1073 | 1099.84 | 2.5% | 1097.79 | 2.3% | \-2.05 |
+| **A-n39-k5.vrp** | 822 | 901.99 | 9.7% | 875.32 | 6.5% | -26.67 |
+| **A-n45-k7.vrp** | 1146 | 1199.98 | 4.7% | 1199.09 | 4.6% | -0.89 |
+| **A-n53-k7.vrp** | 1010 | 1099.45 | 8.9% | 1086.10 | 7.5% | -13.35 |
+| **A-n55-k9.vrp** | 1073 | 1099.84 | 2.5% | 1097.79 | 2.3% | -2.05 |
 | **A-n64-k9.vrp** | 1401 | 1486.92 | 6.1% | 1509.26 | 7.7% | +22.34 |
 | **A-n65-k9.vrp** | 1174 | 1239.42 | 5.6% | 1242.80 | 5.9% | +3.38 |
-| **A-n69-k9.vrp** | 1159 | 1210.78 | 4.5% | 1200.28 | 3.6% | \-10.50 |
-| **A-n80-k10.vrp** | 1763 | 1860.94 | 5.6% | 1840.85 | 4.4% | \-20.09 |
-| **A-n100-k10.vrp** | 2041 | 2288.44 | 12.1% | 2250.34 | 10.3% | \-38.10 |
-| **Average** | — | — | **6.47%** | — | **5.57%** | **\-9.94** |
+| **A-n69-k9.vrp** | 1159 | 1210.78 | 4.5% | 1200.28 | 3.6% | -10.50 |
+| **A-n80-k10.vrp** | 1763 | 1860.94 | 5.6% | 1840.85 | 4.4% | -20.09 |
+| **A-n100-k10.vrp** | 2041 | 2288.44 | 12.1% | 2250.34 | 10.3% | -38.10 |
+| **Average** | — | — | **6.47%** | — | **5.57%** | **-9.94** |
 
 As we can see the ICW outperforms the CW algorithm on average. It also outperforms the MCW algorithm on average, but the difference is small and the higher computation time may not justify the slight cost decrease.
 
@@ -172,7 +172,7 @@ Finally we can combine the changes proposed in the Modified and the Improved alg
 
 The results of the Modified Improved Clarke Wright Savings Algoritm are presented in the following table.
 | Instance | Optimal Cost | Ave. MICW (Cost) | Min. MICW (Cost) | Max. MICW (Cost) | St. Dev MICW (Cost) | Ave. Time (ms) | Gap (%) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: | 
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **A-n32-k5.vrp** | 784 | 838.95 | 832.15 | 858.83 | 7.67 | 70.12 | 7.0% |
 | **A-n33-k6.vrp** | 742 | 753.11 | 747.25 | 777.26 | 7.81 | 71.39 | 1.5% |
 | **A-n37-k5.vrp** | 669 | 713.87 | 694.71 | 733.64 | 12.16 | 80.93 | 6.7% |
@@ -189,50 +189,50 @@ The results of the Modified Improved Clarke Wright Savings Algoritm are presente
 Again this algorith performs similarly to the previous thee algorithms, the cost again competitive and now falls between 1.5% and 11.4%. There is a noticable difference in computation time, but this is a result of our choice of high depth. If computation time if more relevant for your usecase, we advise you to lower it. A further comparision with the CW algorithm is presented in the following table.
 
 | Instance | Optimal Cost | CW (Cost) | CW gap (%) | Ave. MICW (Cost) | Ave. MICW gap (%) | Difference (Cost) |
-| :--- | :---: | :---: | :---: | :---: |:---: | :---: |
-| **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 838.95 | 7.0% | \-4.74 |
-| **A-n33-k6.vrp** | 742 | 776.26 | 4.6% | 753.11 | 1.5% | \-23.15 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **A-n32-k5.vrp** | 784 | 843.69 | 7.6% | 838.95 | 7.0% | -4.74 |
+| **A-n33-k6.vrp** | 742 | 776.26 | 4.6% | 753.11 | 1.5% | -23.15 |
 | **A-n37-k5.vrp** | 669 | 707.81 | 5.8% | 713.87 | 6.7% | +6.06 |
-| **A-n39-k5.vrp** | 822 | 901.99 | 9.7% | 874.61 | 6.4% | \-27.38 |
-| **A-n45-k7.vrp** | 1146 | 1199.98 | 4.7% | 1182.39 | 3.2% | \-17.59 |
-| **A-n53-k7.vrp** | 1010 | 1099.45 | 8.9% | 1080.27 | 7.0% | \-19.18 |
+| **A-n39-k5.vrp** | 822 | 901.99 | 9.7% | 874.61 | 6.4% | -27.38 |
+| **A-n45-k7.vrp** | 1146 | 1199.98 | 4.7% | 1182.39 | 3.2% | -17.59 |
+| **A-n53-k7.vrp** | 1010 | 1099.45 | 8.9% | 1080.27 | 7.0% | -19.18 |
 | **A-n55-k9.vrp** | 1073 | 1099.84 | 2.5% | 1118.75 | 4.3% | +18.91 |
-| **A-n64-k9.vrp** | 1401 | 1486.92 | 6.1% | 1478.53 | 5.5% | \-8.39 |
+| **A-n64-k9.vrp** | 1401 | 1486.92 | 6.1% | 1478.53 | 5.5% | -8.39 |
 | **A-n65-k9.vrp** | 1174 | 1239.42 | 5.6% | 1249.11 | 6.4% | +9.69 |
 | **A-n69-k9.vrp** | 1159 | 1210.78 | 4.5% | 1219.51 | 5.2% | +8.73 |
-| **A-n80-k10.vrp** | 1763 | 1860.94 | 5.6% | 1843.85 | 4.6% | \-17.09 |
-| **A-n100-k10.vrp** | 2041 | 2288.44 | 12.1% | 2279.02 | 11.7% | \-9.42 |
-| **Average** | — | — | **6.47%** | — | **5.79%** | **\-6.96** |
+| **A-n80-k10.vrp** | 1763 | 1860.94 | 5.6% | 1843.85 | 4.6% | -17.09 |
+| **A-n100-k10.vrp** | 2041 | 2288.44 | 12.1% | 2279.02 | 11.7% | -9.42 |
+| **Average** | — | — | **6.47%** | — | **5.79%** | **-6.96** |
 
 Remarkably we observe that when we combibned the two methods of imporovement and modification to one method, there is a subtractive effect. The improvements of the MICW is on average not as good as the improvements of either MCW or ICW. This may be a result of the parameter choice, but it may also indicate that the roulettewheel selection procedure is adapted for the 'pure' notion of a savings value.
 
 #### 3.2.5  Benchmark set B
 It is important to note that these methods perform differently on different benchmark sets. As such we will summerise the performances on a different bechmark set in one table. Note that we keep the hyperparameters unchanged.
 
-|Instance | Optimal Cost | CW (Cost) | CW gap (%) | MCW (Cost) | MCW gap (%)| Ave. ICW (Cost) | Ave. ICW gap (%) | Ave MICW (Cost) | Ave. MICW gap (%) |
-| :--- | :---: | :---: | :---: | :---: |:---: | :---: | :---: |:---: | :---: |
-| **B-n31-k5** | 672 | 681,16 | 1,36% | 681,25 | 1,38% | 684,66 | 1,88% | 684,93 | 1,92% |
-| **B-n34-k5** | 788 | 794,33 | 0,80% | 840,87 | 6,71% | 798,98 | 1,39% | 856,12 | 8,64% |
-| **B-n35-k5** | 955 | 978,33 | 2,44% | 979,37 | 2,55% | 981,43 | 2,77% | 986,10 | 3,26% |
-| **B-n38-k6** | 805 | 832,09 | 3,37% | 830,62 | 3,18% | 836,20 | 3,88% | 833,82 | 3,58% |
-| **B-n39-k5** | 549 | 566,71 | 3,23% | 570,24 | 3,87% | 572,40 | 4,26% | 575,21 | 4,77% |
-| **B-n41-k6** | 829 | 898,09 | 8,33% | 887,25 | 7,03% | 897,38 | 8,25% | 892,79 | 7,70% |
-| **B-n43-k6** | 742 | 781,96 | 5,39% | 767,92 | 3,50% | 767,56 | 3,44% | 772,27 | 4,08% |
-| **B-n44-k7** | 909 | 937,74 | 3,16% | 932,70 | 2,61% | 941,13 | 3,53% | 941,64 | 3,59% |
-| **B-n45-k5** | 751 | 757,16 | 0,82% | 756,04 | 0,67% | 765,41 | 1,92% | 761,36 | 1,38% |
-| **B-n45-k6** | 678 | 727,84 | 7,35% | 723,20 | 6,67% | 732,30 | 8,01% | 731,28 | 7,86% |
-| **B-n50-k7** | 741 | 748,80 | 1,05% | 755,48 | 1,95% | 752,83 | 1,60% | 758,43 | 2,35% |
-| **B-n50-k8** | 1312 | 1354,03 | 3,20% | 1392,18 | 6,11% | 1359,95 | 3,65% | 1369,66 | 4,40% |
-| **B-n51-k7** | 1032 | 1121,25 | 8,65% | 1135,75 | 10,05% | 1094,78 | 6,08% | 1102,53 | 6,83% |
-| **B-n52-k7** | 747 | 764,90 | 2,40% | 812,39 | 8,75% | 766,56 | 2,62% | 784,68 | 5,04% |
-| **B-n56-k7** | 707 | 733,74 | 3,78% | 731,41 | 3,45% | 735,71 | 4,06% | 738,63 | 4,47% |
-| **B-n57-k7** | 1153 | 1239,78 | 7,53% | 1242,79 | 7,79% | 1243,27 | 7,83% | 1244,41 | 7,93% |
-| **B-n57-k9** | 1598 | 1653,42 | 3,47% | 1659,90 | 3,87% | 1658,29 | 3,77% | 1661,24 | 3,96% |
-| **B-n64-k9** | 861 | 921,56 | 7,03% | 924,02 | 7,32% | 923,97 | 7,31% | 927,28 | 7,70% |
-| **B-n66-k9** | 1316 | 1416,42 | 7,63% | 1433,43 | 8,92% | 1412,96 | 7,37% | 1393,24 | 5,87% |
-| **B-n68-k9** | 1272 | 1317,77 | 3,60% | 1320,12 | 3,78% | 1318,62 | 3,66% | 1323,20 | 4,03% |
-| **B-n78-k10** | 1221 | 1264,56 | 3,57% | 1270,10 | 4,02% | 1270,77 | 4,08% | 1275,54 | 4,47% |
-| **Ave. gap** | — | — | **4,19%** | — | **4,87%** | — | **4,26%** | — | **4,64%** |
+| Instance | Optimal Cost | CW (Cost) | CW gap (%) | MCW (Cost) | MCW gap (%) | Ave. ICW (Cost) | Ave. ICW gap (%) | Ave MICW (Cost) | Ave. MICW gap (%) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **B-n31-k5** | 672 | 681.16 | 1.36% | 681.25 | 1.38% | 684.66 | 1.88% | 684.93 | 1.92% |
+| **B-n34-k5** | 788 | 794.33 | 0.80% | 840.87 | 6.71% | 798.98 | 1.39% | 856.12 | 8.64% |
+| **B-n35-k5** | 955 | 978.33 | 2.44% | 979.37 | 2.55% | 981.43 | 2.77% | 986.10 | 3.26% |
+| **B-n38-k6** | 805 | 832.09 | 3.37% | 830.62 | 3.18% | 836.20 | 3.88% | 833.82 | 3.58% |
+| **B-n39-k5** | 549 | 566.71 | 3.23% | 570.24 | 3.87% | 572.40 | 4.26% | 575.21 | 4.77% |
+| **B-n41-k6** | 829 | 898.09 | 8.33% | 887.25 | 7.03% | 897.38 | 8.25% | 892.79 | 7.70% |
+| **B-n43-k6** | 742 | 781.96 | 5.39% | 767.92 | 3.50% | 767.56 | 3.44% | 772.27 | 4.08% |
+| **B-n44-k7** | 909 | 937.74 | 3.16% | 932.70 | 2.61% | 941.13 | 3.53% | 941.64 | 3.59% |
+| **B-n45-k5** | 751 | 757.16 | 0.82% | 756.04 | 0.67% | 765.41 | 1.92% | 761.36 | 1.38% |
+| **B-n45-k6** | 678 | 727.84 | 7.35% | 723.20 | 6.67% | 732.30 | 8.01% | 731.28 | 7.86% |
+| **B-n50-k7** | 741 | 748.80 | 1.05% | 755.48 | 1.95% | 752.83 | 1.60% | 758.43 | 2.35% |
+| **B-n50-k8** | 1312 | 1354.03 | 3.20% | 1392.18 | 6.11% | 1359.95 | 3.65% | 1369.66 | 4.40% |
+| **B-n51-k7** | 1032 | 1121.25 | 8.65% | 1135.75 | 10.05% | 1094.78 | 6.08% | 1102.53 | 6.83% |
+| **B-n52-k7** | 747 | 764.90 | 2.40% | 812.39 | 8.75% | 766.56 | 2.62% | 784.68 | 5.04% |
+| **B-n56-k7** | 707 | 733.74 | 3.78% | 731.41 | 3.45% | 735.71 | 4.06% | 738.63 | 4.47% |
+| **B-n57-k7** | 1153 | 1239.78 | 7.53% | 1242.79 | 7.79% | 1243.27 | 7.83% | 1244.41 | 7.93% |
+| **B-n57-k9** | 1598 | 1653.42 | 3.47% | 1659.90 | 3.87% | 1658.29 | 3.77% | 1661.24 | 3.96% |
+| **B-n64-k9** | 861 | 921.56 | 7.03% | 924.02 | 7.32% | 923.97 | 7.31% | 927.28 | 7.70% |
+| **B-n66-k9** | 1316 | 1416.42 | 7.63% | 1433.43 | 8.92% | 1412.96 | 7.37% | 1393.24 | 5.87% |
+| **B-n68-k9** | 1272 | 1317.77 | 3.60% | 1320.12 | 3.78% | 1318.62 | 3.66% | 1323.20 | 4.03% |
+| **B-n78-k10** | 1221 | 1264.56 | 3.57% | 1270.10 | 4.02% | 1270.77 | 4.08% | 1275.54 | 4.47% |
+| **Ave. gap** | — | — | **4.19%** | — | **4.87%** | — | **4.26%** | — | **4.64%** |
 
 We can generally note that on this testset gap between optimal cost and the obtained cost is smaller. We also observe that the classical CW performs the best, noteably better than the MCW. We assume that this may be a result of the chosen hyperparemters. Next the ICW performs slightly worse on averge, but stays competitive. As such repeated of the ICW method and keeping track of the minimum, may attain better results than the CW attains. Finally the MICW now does improve on the MCW method, which may futher motivate the hypothesis that the poorer performance of the modified versions may be a result of the chosen hyperparemters.
 
@@ -248,12 +248,13 @@ The behaviour of RDP is primarily governed by two parameters: $H$ and $E$.
 Parameter H controls the width of the beam through the state space. A low value of $H$ means the algorithm commits early to a small set of promising partial solutions, trading solution quality for speed. Increasing $H$ allows more alternative partial tours to survive into later stages. At the extreme $H=1$, the algorithm results in the nearest neighbour heuristic, while $H = \infty$ recovers the exact DP algorithm. 
 
 Parameter $E$ controls how many neughbours each state is allowed to ewapnd to. This reflects the observation that in high-quality VRP solutions the arcs tend to connnect to nearby nodes. A smaller $E$ speeds up each stage. 
+Parameter $E$ controls how many neighbours each state is allowed to expand to. This reflects the observation that in high-quality VRP solutions the arcs tend to connect to nearby nodes. A smaller $E$ speeds up each stage. 
 
 #### 3.3.3 Results on Set A
-The implementation was tested on the Augerat Set A benchmark instances. The known optimal values are taken from CVRPLIB. The algortihm was run with $E = 10$ and $H= 200$. These values represent a moderate trade-off between solution quality and computation time.  
+The implementation was tested on the Augerat Set A benchmark instances. The known optimal values are taken from CVRPLIB. The algorithm was run with $E = 10$ and $H= 200$. These values represent a moderate trade-off between solution quality and computation time.  
 
 | Instance | Optimal Cost | RDP (Cost) | Time (ms) | Gap (%) |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- |
 | **A-n32-k5.vrp** | 784 | 941.54 | 45.48 | 20.1% |
 | **A-n33-k6.vrp** | 742 | 1082.14 | 43.20 | 45.8% |
 | **A-n37-k5.vrp** | 669 | 979.32 | 58.24 | 46.4% |
