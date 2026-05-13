@@ -33,13 +33,14 @@ This section summarizes the performance of all implemented algorithms across the
 | **Modified CW (MCW)** | 6.03% | ~5.0 | Parameterized Savings |
 | **Improved CW (ICW)** | 5.57% | ~140 | Randomized Tournament |
 | **Mod. Improved CW (MICW)** | 5.79% | ~140 | Hybrid Savings/Random |
+| **Iterated VND (IVND)** | **4.90%** | **~22** | Metaheuristic (VND/ILS) |
 | **Restricted DP (RDP)** | 31.0% | ~130 | Beam Search construction |
 | **Neural LNS (Optimized)** | **2.55%** | **~4400** | Metaheuristic Parallel LNS |
 
 #### Algorithm Comparison
 - **Best Quality**: **Neural LNS** dominates in solution quality with a 2.55% average gap, significantly outperforming the construction heuristics.
 - **Best Speed**: **Standard Clarke-Wright** remains the fastest, solving instances in under 3ms, making it ideal for real-time applications.
-- **Balanced Choice**: **Improved Clarke-Wright (ICW)** offers a good trade-off, reaching ~5.5% gap while staying under 150ms.
+- **Best Efficiency**: **Iterated VND (IVND)** provides the best balance, achieving a sub-5% gap in only ~22ms, outperforming all Clarke-Wright variants in both quality and stability.
 
 ### 3.2 Clarke Wright Savings Algorithm
 
