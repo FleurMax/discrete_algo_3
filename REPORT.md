@@ -294,6 +294,32 @@ Neural Large Neighborhood Search (Neural LNS) is a metaheuristic that enhances t
 | **A-n100-k10.vrp** | 2041 | 2261.82 | 7241.44 | 10.82% |
 | **Average** | — | — | **4397.00** | **2.55%** |
 
-### 3.5 Algorithm 3 (e.g. Iterated Variable Neighborhood Descent)
-Description of local search and mutation operators...
+### 3.5 Iterated Variable Neighborhood Descent (IVND)
+
+Iterated Variable Neighborhood Descent (IVND) combines the systematic exploration of Variable Neighborhood Descent (VND) with the perturbation mechanism of Iterated Local Search (ILS). The implementation uses a Granular Neighborhood approach (arc-checking) and a Position Map optimization for high-speed execution.
+
+#### Implementation Details
+- **Neighborhood Operators**: Relocation, Swap, 2-Opt*, and standard 2-Opt.
+- **Strategy**: First Improvement within VND cycles to minimize search time.
+- **Performance Optimizations**: Position mapping ($O(1)$ lookup), load caching, and granular arc-checking ($O(1)$ pruning).
+
+#### Results on Set A
+
+| Instance | Optimal Cost | IVND (Cost) | Time (ms) | Gap (%) |
+| :--- | :---: | :---: | :---: | :---: |
+| **A-n32-k5.vrp** | 784 | 828.70 | 13.49 | 5.70% |
+| **A-n33-k6.vrp** | 742 | 776.02 | 29.39 | 4.58% |
+| **A-n37-k5.vrp** | 669 | 682.33 | 8.17 | 1.99% |
+| **A-n39-k5.vrp** | 822 | 870.96 | 11.28 | 5.96% |
+| **A-n45-k7.vrp** | 1146 | 1190.99 | 16.91 | 3.93% |
+| **A-n53-k7.vrp** | 1010 | 1087.39 | 17.38 | 7.66% |
+| **A-n55-k9.vrp** | 1073 | 1107.49 | 24.67 | 3.21% |
+| **A-n64-k9.vrp** | 1401 | 1479.67 | 12.98 | 5.62% |
+| **A-n65-k9.vrp** | 1174 | 1234.92 | 21.38 | 5.19% |
+| **A-n69-k9.vrp** | 1159 | 1172.34 | 17.27 | 1.15% |
+| **A-n80-k10.vrp** | 1763 | 1820.87 | 26.97 | 3.28% |
+| **A-n100-k10.vrp** | 2041 | 2255.97 | 69.22 | 10.53% |
+| **Average** | — | — | **22.42** | **4.90%** |
+
+The IVND algorithm achieves a very competitive balance between solution quality (4.90% gap) and execution speed (avg 22ms), making it significantly faster than Neural LNS while maintaining similar or better stability on larger instances.
 
